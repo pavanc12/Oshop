@@ -1,0 +1,25 @@
+<p class="h3">
+  Your order is successful.
+</p>
+<div class="row">
+  <div class="col-8">
+      <div class="card">
+        <div class="card-body" *ngIf="order$ | async as order">
+          <h5 class="card-title">Summary for Order ID : <span class="badge badge-dark">{{ orderId }}</span>
+          <button class="float-right btn btn-outline-secondary btn-sm" (click)="manageOrders()">Manage your orders</button>   
+        </h5>
+          <ul class="list-group">
+            <li *ngFor="let item of order.items" class="list-group-item">
+              {{ item.quantity }} X {{ item.product.title }} ({{ item.product.price | currency:'USD':true }})
+              <div class="float-right">{{ item.totalPrice | currency:'USD':true }}</div>
+            </li>
+            <li class="list-group-item">
+              <div class="float-right font-weight-bold">
+                {{ order.orderTotalPrice | currency:'USD':true }}
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+  </div>
+</div>
